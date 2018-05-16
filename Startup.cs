@@ -23,7 +23,7 @@ namespace GroShopify
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ProductDbContext>(options =>
+            services.AddEntityFrameworkNpgsql().AddDbContext<ProductDbContext>(options =>
                 options.UseNpgsql(
                     Configuration["Data:GroShopify:ConnectionString"]));
             services.AddTransient<IProductRepository, EFProductRepository>();
