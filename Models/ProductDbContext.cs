@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Entensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GroShopify.Models
 {
@@ -9,6 +9,6 @@ namespace GroShopify.Models
         public ProductDbContext(DbContextOptions<ProductDbContext> options)
            : base(options) { }
 
-        public DbSet<Product> Products {get; set;}        
+        public DbSet<Product> Products { get; set; }        
     }
 }
