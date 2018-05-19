@@ -7,31 +7,29 @@ using GroShopify.Models.ViewModels;
 
 namespace GroShopify.Infrastructure
 {
-    public class PageLinkTagHelper
+    [HtmlTargetElement("div", Attributes = "page-model")]
+    public class PageLinkTagHelper : TagHelper 
     {
-        [HtmlTargetElement("div", Attributes = "page-model")]
-        public class PageLinkTagHelper : TagHelper 
+        private IUrlHelperFactory urlHelperFactory;
+
+        public PageLinkTagHelper(IUrlHelperFactory helperFactory)
         {
-            private IUrlHelperFactory IUrlHelperFactory;
+            urlHelperFactory = helperFactory;
+        }
 
-            public PageLinkTagHelper(IUrlHelperFactory helperFactory)
-            {
-                IUrlHelperFactory = helperFactory;
-            }
+        [ViewContext]
+        [HtmlAttributeNotBound]
+        public ViewContext ViewContext { get; set; }
 
-            [ViewContext]
-            [HtmlAttributeNotBound]
-            public ViewContext ViewContext { get; set; }
+        public PagingInfo PageModel { get; set; }
 
-            public PagingInfo PageModel { get; set; }
+        public string PageAction { get; set; }
 
-            public string PageAction { get; set; }
-
-            public override void Process(TagHelperContext context,
-                    TagHelperOutPut output) 
-            {
+        public override void Process(TagHelperContext context,
+                TagHelperOutput output) 
+        {
                 IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
-                TagBuilder result = new TagBuilding("div");
+                TagBuilder result = new TagBuilder("div");
                 for (int i = 1; i <= PageModel.TotalPages; i++)
                 {
                     TagBuilder tag = new TagBuilder("a");
@@ -41,7 +39,6 @@ namespace GroShopify.Infrastructure
                     result.InnerHtml.AppendHtml(tag);
                 }
                 output.Content.AppendHtml(result.InnerHtml);
-            }
-        }        
+        }              
     }
 }
