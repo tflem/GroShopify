@@ -21,7 +21,7 @@ namespace GroShopify.Controllers
                 Products = repository.Products
                     .OrderBy(p => p.ProductID)
                     .Skip((productPage - 1) * PageSize)
-                    .Take(PageSize)
+                    .Take(PageSize),
                 PagingInfo = new PagingInfo 
                 {
                     CurrentPage = productPage,
