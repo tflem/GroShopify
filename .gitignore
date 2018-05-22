@@ -1,4 +1,4 @@
-# User-specific files
+ # User-specific files
 *.suo
 *.user
 *.userosscache
@@ -265,6 +265,7 @@ __pycache__/
 # tools/
 
 ### VisualStudioCode ###
+.*
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
