@@ -4,6 +4,7 @@ using Moq;
 using GroShopify.Controllers;
 using GroShopify.Models;
 using Xunit;
+using GroShopify.Models.ViewModels;
 
 namespace GroShopify.Tests
 {
@@ -27,8 +28,8 @@ namespace GroShopify.Tests
             controller.PageSize = 3;
 
             // Act
-            ProductListViewModel result =
-                controller.List(2).ViewData.Model as ProductListViewModel;
+            ProductsListViewModel result =
+                controller.List(2).ViewData.Model as ProductsListViewModel;
 
             // Assert
             Product[] productArray = result.Products.ToArray();
@@ -41,7 +42,7 @@ namespace GroShopify.Tests
         public void Can_Send_Pagination_View_Model()
         {
             // Arrange
-            Mock<IProductRepository> mock = new Mock<IProductRepository>():
+            Mock<IProductRepository> mock = new Mock<IProductRepository>();
             mock.Setup(m => m.Products).Returns((new Product[]
             {
                 new Product { ProductID = 1, Name = "P1"},
@@ -52,12 +53,12 @@ namespace GroShopify.Tests
             }).AsQueryable<Product>());
 
             // Arrange
-            ProductController controller = 
+            ProductController controller =
                 new ProductController(mock.Object) { PageSize = 3 };
 
             // Act
-            ProductListViewModel result =
-                controller.List(2).ViewData.Model as ProductListViewModel;
+            ProductsListViewModel result =
+                controller.List(2).ViewData.Model as ProductsListViewModel;
 
             // Assert
             PagingInfo pageInfo = result.PagingInfo;
