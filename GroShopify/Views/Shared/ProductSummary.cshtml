@@ -1,17 +1,20 @@
-@model Product
+@model ProductsListViewModel
 
-<table class="ui selectable inverted table">
-  <thead>
-    <tr><th>Name</th>
-    <th>Quantity</th>
-    <th>Action</th>
-  </tr></thead>
-   
-   <tbody>   
+<table class="table table-striped table-dark">
+  <thead class="thead-dark">
     <tr>
-      <td>@p.Name</td>   
-      <td>@p.Quantity</td>     
-      <td>Edit | Delete | Add More</td>    
-    </tr>         
-  </tbody>   
-</table> 
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+@foreach (var p in Model.Products) {
+
+  <tbody>   
+     <td>@p.Name</td>
+     <td>@p.Quantity</td>
+     <td>Edit | Delete | Add More</td>                  
+  </tbody>  
+}
+</table>
