@@ -3,6 +3,7 @@
 <table class="table table-striped table-dark">
   <thead class="thead-dark">
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Quantity</th>
       <th>Actions</th>
@@ -12,6 +13,7 @@
 @foreach (var p in Model.Products) {
 
   <tbody>   
+     <td>@p.ProductID</td>
      <td>@p.Name</td>
      <td>@p.Quantity</td>
      <td>Edit | Delete | Add More</td>                  
