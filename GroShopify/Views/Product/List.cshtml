@@ -1,10 +1,26 @@
 @model ProductsListViewModel
 
-@foreach (var p in Model.Products) {
-    <div>
-        <h3>@p.Name</h3>
-        <h4>@p.Quantity</h4>
-    </div>
-}
+<table class="ui selectable inverted table">
+  <thead>
+    <tr><th>Name</th>
+    <th>Quantity</th>
+    <th>Action</th>
+  </tr></thead>
 
-<div page-model="@Model.PagingInfo" page-action="List"></div>
+   @foreach (var p in Model.Products)
+   {
+   <tbody>   
+    <tr>
+      <td>@p.Name</td>   
+      <td>@p.Quantity</td>     
+      <td>Edit | Delete | Add More</td>    
+    </tr>       
+    
+  </tbody>   
+   }   
+</table> 
+
+<div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"                    
+     page-class="btn" page-class-normal="btn-secondary"              
+     page-class-selected="btn btn-dark" class="btn-group pull-right m-1">              
+</div> 
